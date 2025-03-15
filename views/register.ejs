@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+
+    <link rel="stylesheet" href="/stylesheets/register.css">
+</head>
+
+<body>
+    <!-- <div id="right">Successfully Verified ✅
+    </div> -->
+    <!-- <div id="wrong"> Something went wrong!!
+        </div -->
+    <div id="main">
+        <h1>
+            <center>Sign-up User</center>
+        </h1>
+        <form autocomplete="off" action="/register" method="post">
+            <div id="form">
+                <label for="name"><input type="text" id="name" placeholder="Enter your name" name="Name" required></label>
+                <p id="msgun"></p>
+            </div><br>
+            <div id="form">
+                <label for="Date_Of_Birth"><input type="date" id="Date_Of_Birth" placeholder="Enter your Date of Birth" name="DOB" required></label>
+                <p id="msgdob"></p>
+            </div><br>
+            <div id="form">
+                <select name="Gender" id="gender">
+                    <option>Enter your gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Others</option>
+                </select>
+                <p id="msggen"></p>
+            </div><br>
+            <div id="form">
+                <label for="Phone_No"><input type="tel" id="Phone_No" placeholder="Enter your Phone Number" name="Ph_No" required></label>
+                <p id="msgphone"></p>
+            </div><br>
+            <div id="form">
+                <label for="Aadhar_No"><input type="tel" id="Aadhar_No" placeholder="Enter your Aadhar Number" name="Ad_No" required></label>
+                <p id="msgaadhar"></p>
+            </div><br>
+            <div id="form">
+                <label for="pw"><input type="password" id="pw" placeholder="Enter the password" name="PsW" required></label>
+                <p id="msgpw"></p>
+            </div><br>
+            <center><button id="submit">Create User</button></center>
+
+            
+        </form>
+    </div>
+    <script src="/javascripts/register.js"></script>
+</body>
+
+</html>
