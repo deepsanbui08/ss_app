@@ -1,16 +1,14 @@
 const express=require("express");
 const router=express.Router();
-const User = require("../models/user-model");
+const {registerUser}=require("../controllers/authController");
 
 
 router.get("/",(req,res)=>{
     res.render("register")
 })
-// // registration route
 
-// router.post('/signup',async (req,res)=>{
-
-// });
+// registration route
+router.post('/register',registerUser);
 
 // // login route
 

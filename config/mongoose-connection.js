@@ -1,14 +1,17 @@
-const mongoose=require("mongoose");
-// require("dotenv").config();
 
-const mongoUrl= "mongodb://127.0.0.1:27017/Swastya_Sachetan";
+const mongoose=require("mongoose");
+const config=require("config");
+const dbgr=require("debug")("development:mongoose");
+
+const mongoUrl= `${config.get("MONGODB_URI")}/${process.env.MONGODB_NAME}`;
+
 mongoose
 .connect(mongoUrl)
 .then(function(){
-    console.log("connected to MongoDB server");
+    dbgr("Connected to MongoDB server");
 })
 .catch(function(err){
-    onsole.log(err);
+    dbgr(err);
 })
 
 module.exports=mongoose.connection;

@@ -28,8 +28,7 @@ app.listen(PORT,()=>{
 
 // const userModel = require("./models/usermodel")
 // const postModel = require("./models/postmodel")
-// const bcrypt = require('bcrypt')
-// const jwt = require('jsonwebtoken')
+//
 // 
 // const multerconfig=require('./config/multerconfig')
 // const session = require('express-session');

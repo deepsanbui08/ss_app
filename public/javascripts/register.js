@@ -6,6 +6,7 @@ btn.addEventListener("click",()=>{
     const phone=document.querySelector("#Phone_No").value;
     const aadhar=document.querySelector("#Aadhar_No").value;
     const password=document.querySelector("#pw").value;
+    const gender=document.querySelector("#gender").value;
     
 
     const actUn=/^[a-z A-Z \s]{4,}$/;
@@ -41,6 +42,19 @@ btn.addEventListener("click",()=>{
     {
         const msg=document.querySelector("#msgdob");
         msg.textContent=`Date Of Birth is empty!!Please enter the Date of Birth`;
+        msg.parentElement.className="error";
+    }
+    //Gender
+    if(gender!=="")
+    {
+        const msg=document.querySelector("#msggen");
+        msg.textContent=`Checked!`;
+        msg.parentElement.className="success";
+    }
+    else if(DOB=="")
+    {
+        const msg=document.querySelector("#msggen");
+        msg.textContent=`Gender is empty!!Please enter the Gender`;
         msg.parentElement.className="error";
     }
     //Aadhar Number validation
