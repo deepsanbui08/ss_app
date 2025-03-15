@@ -51,7 +51,7 @@ btn.addEventListener("click",()=>{
         msg.textContent=`Checked!`;
         msg.parentElement.className="success";
     }
-    else if(DOB=="")
+    else if(gender=="")
     {
         const msg=document.querySelector("#msggen");
         msg.textContent=`Gender is empty!!Please enter the Gender`;
@@ -70,7 +70,7 @@ btn.addEventListener("click",()=>{
         const msg=document.querySelector("#msgaadhar");
         if(aadhar.length<12 && aadhar.length>0)
             msg.textContent=`Aadhar Number should be of 12 digits.`;
-        else if(phone=="")
+        else if(aadhar=="")
              msg.textContent=`Aadhar Number is empty!!Please enter the Aadhar Number.`;
         else
             msg.textContent=`Invalid Aadhar Number`;

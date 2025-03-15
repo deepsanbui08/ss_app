@@ -1,16 +1,21 @@
+/* Reset Default Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+
+/* Light Green Gradient Background */
 body {
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    background: linear-gradient(to right, #a0f45b, #b0f1a3);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
+
+/* Form Container */
 #main {
     background: white;
     padding: 2rem;
@@ -19,18 +24,26 @@ body {
     width: 40%;
     text-align: center;
 }
+
+/* Heading */
 h1 {
     color: #333;
     margin-bottom: 1rem;
 }
+
+/* Form Styling */
 #form div {
     margin-bottom: 1rem;
     text-align: left;
 }
+
+/* Labels */
 label {
     font-weight: bold;
 }
-input,select{
+
+/* Input Fields */
+input {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -39,39 +52,36 @@ input,select{
     transition: 0.3s;
 }
 
+/* Input Focus Effect */
 input:focus {
-    border-color: #ff758c;
-    box-shadow: 0 0 5px #ff758c;
-    outline: none;
-}
-select:focus{
-    border-color: #ff758c;
-    box-shadow: 0 0 5px #ff758c;
+    border-color: #57cc99;
+    box-shadow: 0 0 5px #57cc99;
     outline: none;
 }
 
-.success p{
-    color:rgb(24, 218, 7);
+/* Success Message */
+.success p {
+    color: rgb(24, 218, 7);
     font-size: 12px;
 }
-.success input{
-    border:2px solid rgb(24, 218, 7);
+
+.success input {
+    border: 2px solid rgb(24, 218, 7);
 }
-.success select{
-    border:2px solid rgb(24, 218, 7);
-}
-.error p{
-    color:red;
+
+/* Error Message */
+.error p {
+    color: red;
     font-size: 12px;
 }
-.error input{
-    border:2px solid red;
+
+.error input {
+    border: 2px solid red;
 }
-.error select{
-    border:2px solid red;
-}
+
+/* Beautiful Button */
 button {
-    background: #ff758c;
+    background: #02b84b;
     color: white;
     padding: 10px 15px;
     margin-bottom: 1rem;
@@ -80,25 +90,49 @@ button {
     cursor: pointer;
     transition: 0.3s;
 }
+
+/* Button Hover Effect */
 button:hover {
-    background: #e03e52;
+    background: #047c46;
 }
 
+/* Links */
 .link a {
-    color: #ff758c;
+    /* margin-top: 10px; */
+    color: #06b824;
     text-decoration: none;
 }
+
+/* Link Hover */
 .link a:hover {
     text-decoration: underline;
 }
+
+/* Success Message Box */
 #right {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     padding: 10px;
-    background: #b2f5a1;
+    background: #95f102;
     color: #437a08;
     text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
     display: none;
+}
+
+/* Error Message Box */
+#wrong {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #b5e48c;
+    color: #437a08;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
 }

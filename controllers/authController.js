@@ -7,7 +7,7 @@ const {generateToken}=require("../utils/generateToken")
 module.exports.registerUser= async (req,res)=>{
     try{
         let {Name,DOB,Gender,Ph_No,Ad_No,PsW}=req.body
-
+        console.log(PsW)
         let user=await userModel.findOne({aadharNumber:Ad_No});
         if (user)
         {
@@ -29,6 +29,7 @@ module.exports.registerUser= async (req,res)=>{
                     });
                     let token=generateToken(user);
                     res.cookie("token",token);
+                    console.log(user.password)
                     res.send("User created succesfully");
                 }
             });
@@ -38,4 +39,32 @@ module.exports.registerUser= async (req,res)=>{
         res.send("err.message");
     }
     
+}
+
+module.exports.loginUser=async (req,res)=>{
+    try{
+        let {Ad_No,PsW}=req.body;
+
+        let user=await userModel.findOne({aadharNumber:Ad_No});
+        if(!user) return res.status(401).send("Aadhar No is incorrect!");
+        
+        bcrypt.compare(PsW,user.password,(err,result)=>{
+
+        console.log(result)
+        if(result){
+            let token=generateToken(user);
+            res.cookie("token",token);
+            res.send("You are loggedin");
+        }
+        else{
+            return res.status(401).send("Password is incorrect!");
+        }
+    })
+    }
+    catch(err){
+        res.send("err.message");
+    }
+    
+
+
 }
