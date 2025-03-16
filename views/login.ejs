@@ -10,10 +10,13 @@
 </head>
 
 <body>
-    <div id="right">Successfully Verified ✅
-    </div>
-    <!-- <div id="wrong"> Something went wrong!!
+    <!-- <div id="right">Successfully Verified ✅
     </div> -->
+    
+    <% if(error.length>0){ %>
+        <div id="wrong"> <%= error %>
+        </div>
+    <% } %>
     <div id="main">
         <h1>
             <center>Login User</center>

@@ -16,10 +16,3 @@ mongoose
 
 module.exports=mongoose.connection;
 
-// const db=mongoose.connection;
-// db.on('connected',()=>{
-//     console.log('connected to MongoDB server');
-// })
-// db.on('disconnected',()=>{
-//     console.log(' MongoDB server disconnected');
-// })

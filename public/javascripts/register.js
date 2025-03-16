@@ -68,7 +68,7 @@ btn.addEventListener("click",()=>{
     else
     {
         const msg=document.querySelector("#msgaadhar");
-        if(aadhar.length<12 && aadhar.length>0)
+        if(aadhar.length!==12)
             msg.textContent=`Aadhar Number should be of 12 digits.`;
         else if(aadhar=="")
              msg.textContent=`Aadhar Number is empty!!Please enter the Aadhar Number.`;

@@ -1,23 +1,24 @@
 const userModel = require("../models/user-model");
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
 const {generateToken}=require("../utils/generateToken")
 
 
 module.exports.registerUser= async (req,res)=>{
     try{
         let {Name,DOB,Gender,Ph_No,Ad_No,PsW}=req.body
-        console.log(PsW)
         let user=await userModel.findOne({aadharNumber:Ad_No});
         if (user)
         {
-            // req.flash("error","User already registered ")
-            return res.status(401).redirect("User already registered,Please login")
+            req.flash("error","User already registered,Please login");
+            return res.status(500).redirect("/Swasthya_Sachetan/users/register");
         } 
 
         bcrypt.genSalt(10,function(err,salt){
             bcrypt.hash(PsW,salt,async function(err,hash){
-                if(err) return res.send(err.message);
+                if(err){
+                    req.flash("error",err.message);
+                    res.status(500).redirect("/Swasthya_Sachetan/users/register");
+                }
                 else{
                     let user=await userModel.create({
                         name:Name,
@@ -29,14 +30,17 @@ module.exports.registerUser= async (req,res)=>{
                     });
                     let token=generateToken(user);
                     res.cookie("token",token);
-                    console.log(user.password)
-                    res.send("User created succesfully");
+                    req.flash("success","User created successfully");
+                    res.redirect("/Swasthya_Sachetan/users/profile");
                 }
-            });
+            });  
         });
     }
     catch(err){
-        res.send("err.message");
+        if (!res.headersSent){
+            req.flash("error",err.message);
+            res.redirect("/Swasthya_Sachetan/users/register");
+        }
     }
     
 }
@@ -46,25 +50,29 @@ module.exports.loginUser=async (req,res)=>{
         let {Ad_No,PsW}=req.body;
 
         let user=await userModel.findOne({aadharNumber:Ad_No});
-        if(!user) return res.status(401).send("Aadhar No is incorrect!");
+        if(!user){
+            req.flash("error","Aadhar Number or Password is incorrect!");
+            return res.redirect("/Swasthya_Sachetan/users/");
+        } 
         
         bcrypt.compare(PsW,user.password,(err,result)=>{
-
-        console.log(result)
-        if(result){
-            let token=generateToken(user);
-            res.cookie("token",token);
-            res.send("You are loggedin");
-        }
-        else{
-            return res.status(401).send("Password is incorrect!");
-        }
-    })
+            if(result){
+                let token=generateToken(user);
+                res.cookie("token",token);
+                req.flash("success","You are loggedin");
+                res.redirect("/Swasthya_Sachetan/users/profile");
+            }
+            else{
+                req.flash("error","Aadhar Number or Password is incorrect!");
+                res.redirect("/Swasthya_Sachetan/users/");
+            }
+        })
     }
     catch(err){
-        res.send("err.message");
+        if (!res.headersSent){
+            req.flash("error",err.message);
+            res.redirect("/Swasthya_Sachetan/users/");
+        }
+       
     }
-    
-
-
 }
