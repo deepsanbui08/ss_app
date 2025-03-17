@@ -15,16 +15,26 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, "public")))
 app.use(cookieParser())
 
+// for cache handling
+app.use((req, res, next) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    res.setHeader('Pragma', 'no-cache'); // HTTP 1.0 backward compatibility
+    res.setHeader('Expires', '0'); // Forces cache to expire immediately
+    next();
+});
+
 app.use(session({
         secret: process.env.EXPRESS_SESSION_SECRET, 
         resave: false,
         saveUninitialized: false
     }));
 app.use(flash());
+
+
     
 const PORT=process.env.PORT||3000;
 
-app.use('/Swasthya_Sachetan/users',usersRouter);
+app.use('/',usersRouter);
 
 
 app.listen(PORT,()=>{

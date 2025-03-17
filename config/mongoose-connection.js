@@ -1,18 +1,17 @@
-
+require("dotenv").config();
 const mongoose=require("mongoose");
 const config=require("config");
 const dbgr=require("debug")("development:mongoose");
 
-const mongoUrl= `${config.get("MONGODB_URI")}/${process.env.MONGODB_NAME}`;
-
-mongoose
-.connect(mongoUrl)
-.then(function(){
-    dbgr("Connected to MongoDB server");
+const mongoUrl= process.env.MONGODB_URL_ONLINE;
+mongoose.connect(mongoUrl);
+const db=mongoose.connection;
+db.on('connected',()=>{
+    console.log('connected to MongoDB server');
 })
-.catch(function(err){
-    dbgr(err);
+db.on('disconnected',()=>{
+    console.log(' MongoDB server disconnected');
 })
 
-module.exports=mongoose.connection;
+module.exports=db;
 
