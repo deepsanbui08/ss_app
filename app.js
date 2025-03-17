@@ -5,6 +5,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const MongoStore = require('connect-mongo');
+const mongoose = require('mongoose');
 
 const db = require('./config/mongoose-connection');
 const usersRouter= require('./routes/usersRouter');
@@ -26,8 +28,14 @@ app.use((req, res, next) => {
 app.use(session({
         secret: process.env.EXPRESS_SESSION_SECRET, 
         resave: false,
-        saveUninitialized: false
+        saveUninitialized: false,
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGODB_URL_ONLINE, // Replace with your MongoDB connection string
+            collectionName: 'sessions',
+            ttl: 14 * 24 * 60 * 60, // Expiry time: 14 days
+        })
     }));
+
 app.use(flash());
 
 
