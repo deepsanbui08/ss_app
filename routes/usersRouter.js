@@ -45,7 +45,7 @@ router.get('/logout', (req, res) => {
         if (err) {
             console.error("Logout Error:", err);
             req.flash("error", "Error logging out. Please try again.");
-            return res.redirect('/Swasthya_Sachetan/users/profile');
+            return res.redirect('/users/profile');
         }// Clear the JWT token
     
         res.redirect('/'); 

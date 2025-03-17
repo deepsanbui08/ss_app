@@ -4,7 +4,7 @@ require("dotenv").config();
 module.exports=async (req,res,next)=>{
     if(!req.cookies.token){
         req.flash("error","You need to be logged in first!");
-        return res.redirect("/Swasthya_Sachetan/users/");
+        return res.redirect("/");
     }
 
     try{
