@@ -1,7 +1,6 @@
 require("dotenv").config();
 const mongoose=require("mongoose");
-const config=require("config");
-const dbgr=require("debug")("development:mongoose");
+
 
 const mongoUrl= process.env.MONGODB_URL_ONLINE;
 mongoose.connect(mongoUrl);
